@@ -1,2 +1,2 @@
 web:java $JAVA_OPTS -cp target/classes:target/dependency/* com.mtm.api.Main
-web: java -Dserver.port=$PORT -jar target/*.jar
+web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/country-api.jar

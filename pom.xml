@@ -78,7 +78,7 @@
 		      <configuration>
 		        <appName>mtm-country-api</appName>
 		        <processTypes>
-		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mtm.country.Main</web>
+		          <web>java $JAVA_OPTS -cp target/classes:target/dependency/* com.mtm.api.Main</web>
 		        </processTypes>
 		      </configuration>
 		    </plugin>

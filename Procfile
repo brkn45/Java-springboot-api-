@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.mtm.country.Main
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* com.mtm.api.Main

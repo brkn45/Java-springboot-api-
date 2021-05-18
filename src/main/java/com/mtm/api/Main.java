@@ -6,21 +6,17 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-
-
-
-
-@SpringBootApplication(exclude=SecurityAutoConfiguration.class)
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class Main extends SpringBootServletInitializer {
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(CountryAPI.class);
-	}
-	
-	
-	public static void main(String[] args) {
-		SpringApplication.run(Main.class, args);
-		
-	}
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(CountryAPI.class);
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+
+    }
 
 }

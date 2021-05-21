@@ -36,11 +36,13 @@ public class CountryAPI {
     public ResponseEntity<ArrayList<Country>> requestWord(@PathVariable("word") String word) {
         int flag = 0;
         int i = 0, countrySize = data.getAllCountry().size();
+        data.getResponseCountry().clear();
         for (i = 0; i < countrySize; i++) {
-            if (Pattern.compile(Pattern.quote(word), Pattern.CASE_INSENSITIVE).matcher(data.getAllCountry().get(i).getName()).find()) {
+            if (findWord(word,data.getAllCountry().get(i).getName()) && data.getAllCountry().get(i).getCountry().equals("TR")) {
                 data.getResponseCountry().add(data.getAllCountry().get(i));
                 flag = 1;
             }
+            
 
         }
         if (flag == 0) {
@@ -48,6 +50,17 @@ public class CountryAPI {
         } else {
             return new ResponseEntity<>(data.getResponseCountry(), HttpStatus.OK);
         }
+    }
+    private boolean findWord(String word,String city) {
+    	for(int i=0;i<word.length();) {
+    		if(Character.toLowerCase(word.charAt(i))==Character.toLowerCase(city.charAt(i))) {
+    			i++;
+    		}
+    		else {
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
 }

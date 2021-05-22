@@ -24,23 +24,25 @@ public class CountryAPI {
         data.readJsonFile("berkan");
     }
 
-    @GetMapping("/berkan")
+    /*@GetMapping("/berkan")
     public String getvalue() throws FileNotFoundException, IOException, ParseException {
         Data data = new Data();
         data.readJsonFile("berkan");
 
         return data.getAllCountry().get(500).getCountry();
-    }
+    }*/
 
     @RequestMapping(value = "/{word}", method = RequestMethod.GET, produces = {"application/json"})
     public ResponseEntity<ArrayList<Country>> requestWord(@PathVariable("word") String word) {
         int flag = 0;
         int i = 0, countrySize = data.getAllCountry().size();
+        int count=0;
         data.getResponseCountry().clear();
-        for (i = 0; i < countrySize; i++) {
-            if (findWord(word,data.getAllCountry().get(i).getName()) && data.getAllCountry().get(i).getCountry().equals("TR")) {
+        for (i = 0; i < countrySize && count < 5; i++) {
+            if (findWord(word,data.getAllCountry().get(i).getName()) ) {
                 data.getResponseCountry().add(data.getAllCountry().get(i));
                 flag = 1;
+                count++;
             }
             
 
@@ -52,7 +54,7 @@ public class CountryAPI {
         }
     }
     private boolean findWord(String word,String city) {
-    	for(int i=0;i<word.length();) {
+    	for(int i=0;i<word.length() && i< city.length();) {
     		if(Character.toLowerCase(word.charAt(i))==Character.toLowerCase(city.charAt(i))) {
     			i++;
     		}

@@ -54,8 +54,8 @@ public class CountryAPI {
         }
     }
     private boolean findWord(String word,String city) {
-    	for(int i=0;i<word.length() && i< city.length();) {
-    		if(Character.toLowerCase(word.charAt(i))==Character.toLowerCase(city.charAt(i))) {
+    	for(int i=0;i<word.length() ;) {
+    		if( i< city.length() && Character.toLowerCase(word.charAt(i))==Character.toLowerCase(city.charAt(i))) {
     			i++;
     		}
     		else {
@@ -66,3 +66,4 @@ public class CountryAPI {
     }
 
 }
+

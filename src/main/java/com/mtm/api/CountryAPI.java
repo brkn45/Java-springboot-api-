@@ -41,7 +41,19 @@ public class CountryAPI {
         int i = 0, countrySize = data.getAllCountry().size();
         int count=0;
         data.getResponseCountry().clear();
-        for (i = 0; i < countrySize; i++) {
+        for (i = 0; i < countrySize && count <5; i++) {
+            if (((word.length() +2 )== data.getAllCountry().get(i).getName().length() 
+            		||(word.length() +1 )== data.getAllCountry().get(i).getName().length()) 
+            		&& data.getAllCountry().get(i).getCountry().equals("TR") 
+            		&& findWord(word,data.getAllCountry().get(i).getName()) ) {
+                data.getResponseCountry().add(data.getAllCountry().get(i));
+                flag = 1;
+                count++;
+            }
+            
+
+        }
+        for (i = 0; i < countrySize ; i++) {
             if (word.length()>= data.getAllCountry().get(i).getName().length() && findWord(word,data.getAllCountry().get(i).getName()) ) {
                 data.getResponseCountry().add(data.getAllCountry().get(i));
                 flag = 1;
@@ -70,6 +82,10 @@ public class CountryAPI {
         	 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         	}
         else {
+        	
+        	Set<Country> set = new HashSet<>(data.getResponseCountry());
+        	data.getResponseCountry().clear();
+        	data.getResponseCountry().addAll((Collection<? extends Country>) set);
         	this.setTurkey();
         	return new ResponseEntity<>(data.getResponseCountry(), HttpStatus.OK);
         }
